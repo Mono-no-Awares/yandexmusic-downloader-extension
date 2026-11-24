@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YM Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <span class="logo-text">YM Downloader</span>
+      </div>
+      <div class="header-actions">
+        <button id="langToggle" class="icon-btn lang-btn" title="Language / Язык" type="button">RU</button>
+        <button id="themeToggle" class="icon-btn" title="Тема" type="button">
+          <svg class="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.02-.39-1.41 0z"/>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M12.3 2a10 10 0 0 0-.19 20 10.04 10.04 0 0 0 9.89-7.52.75.75 0 0 0-.96-.88 8 8 0 1 1-9.62-10.64.75.75 0 0 0-.88-.96A9.97 9.97 0 0 0 12.3 2z"/>
+          </svg>
+        </button>
+        <button id="settingsToggle" class="icon-btn" title="Настройки" type="button">
+          <svg viewBox="0 0 24 24">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="mainView" class="view active">
+      <section class="card current-track-card">
+        <div class="card-label" data-i18n="currentTrack">Текущий трек</div>
+        <div class="track-row">
+          <div class="cover-wrapper">
+            <img id="trackCover" class="track-cover" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%2327272a'/%3E%3Cpath d='M40 28v20.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V34h6v-6h-8z' fill='%2371717a'/%3E%3C/svg%3E" alt="Cover">
+          </div>
+          <div class="track-info">
+            <div id="trackTitle" class="track-title">Трек не запущен</div>
+            <div id="trackArtist" class="track-artist">Откройте Яндекс Музыку</div>
+            <div class="track-meta">
+              <span id="bitrateBadge" class="badge">320 kbps HQ</span>
+            </div>
+          </div>
+        </div>
+        <button id="btnDownloadCurrent" class="btn btn-primary" disabled type="button">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+          </svg>
+          <span class="btn-text" data-i18n="downloadTrack">Скачать трек</span>
+        </button>
+      </section>
+
+      <section class="card playlist-card">
+        <div class="card-header-inline">
+          <span class="card-label" data-i18n="batchDownload">Пакетная загрузка</span>
+          <span id="playlistCountBadge" class="badge">0 треков</span>
+        </div>
+        <p class="card-desc" data-i18n="batchDesc">Скачивание открытого альбома или плейлиста.</p>
+        <div id="batchProgressContainer" class="progress-container hidden">
+          <div class="progress-bar-bg">
+            <div id="batchProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-stats">
+            <span id="batchProgressText">0 / 0</span>
+            <span id="batchProgressPercent">0%</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button id="btnScanPlaylist" class="btn btn-secondary" type="button">
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+            <span class="btn-text" data-i18n="scan">Найти</span>
+          </button>
+          <button id="btnDownloadBatch" class="btn btn-primary" disabled type="button">
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-4h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h10V7H4c-.55 0-1 .45-1 1s.45 1 1 1zm15.59 1.41L18 8.83V3c0-.55-.45-1-1-1s-1 .45-1 1v5.83l-1.59-1.59a.996.996 0 1 0-1.41 1.41l3.3 3.3c.39.39 1.02.39 1.41 0l3.3-3.3a.996.996 0 1 0-1.42-1.41z"/>
+            </svg>
+            <span id="batchBtnText" class="btn-text" data-i18n="downloadAll">Скачать все</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <section id="settingsView" class="view">
+      <div class="settings-header">
+        <button id="btnBackToMain" class="icon-btn" title="Назад" type="button">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </button>
+        <h2 class="view-title" data-i18n="settingsTitle">Настройки</h2>
+      </div>
+      <div class="card settings-card">
+        <div class="setting-item">
+          <label class="setting-label" data-i18n="accentColor">Акцентный цвет</label>
+          <div id="colorSwatches" class="color-swatches">
+            <button class="swatch active" data-color="rose" title="Rose" type="button"></button>
+            <button class="swatch" data-color="emerald" title="Emerald" type="button"></button>
+            <button class="swatch" data-color="indigo" title="Indigo" type="button"></button>
+            <button class="swatch" data-color="cyan" title="Cyan" type="button"></button>
+            <button class="swatch" data-color="amber" title="Amber" type="button"></button>
+            <button class="swatch" data-color="violet" title="Violet" type="button"></button>
+          </div>
+        </div>
+        <div class="setting-item">
+          <label class="setting-label" for="settingSubfolder" data-i18n="subfolderLabel">Подпапка в Загрузках</label>
+          <input type="text" id="settingSubfolder" class="input-text" placeholder="Пусто: сразу в Загрузки">
+        </div>
+        <div class="setting-item">
+          <label class="setting-label" for="settingPattern" data-i18n="patternLabel">Шаблон имени</label>
+          <select id="settingPattern" class="select">
+            <option value="{artist} - {title}">{artist} - {title}</option>
+            <option value="{title} - {artist}">{title} - {artist}</option>
+            <option value="{artist} - {album} - {title}">{artist} - {album} - {title}</option>
+            <option value="{title}">{title}</option>
+          </select>
+        </div>
+        <div class="setting-item checkbox-item">
+          <div class="setting-info">
+            <span class="setting-title" data-i18n="hqLabel">Приоритет 320 kbps (HQ)</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="settingHQ" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item checkbox-item">
+          <div class="setting-info">
+            <span class="setting-title" data-i18n="oauthLabel">OAuth-доступ (полные треки)</span>
+            <span id="oauthStatusText" class="setting-label">Проверка...</span>
+          </div>
+          <button id="btnOAuthConnect" class="btn btn-secondary btn-compact" type="button">Подключить</button>
+        </div>
+      </div>
+      <button id="btnSaveSettings" class="btn btn-primary" type="button">
+        <span class="btn-text" data-i18n="save">Сохранить</span>
+      </button>
+    </section>
+
+    <footer class="app-footer">
+      <span id="footerStatus" class="footer-status">Готово</span>
+      <a class="credits-link" href="https://github.com/Mono-no-Awares" target="_blank" rel="noopener noreferrer" data-i18n="credits">Сделал Mono no Aware</a>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

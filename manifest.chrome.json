@@ -1,0 +1,85 @@
+{
+  "manifest_version": 3,
+  "name": "Yandex Music Downloader",
+  "version": "1.1.0",
+  "author": "Mono no Aware",
+  "description": "Минималистичное расширение для скачивания любых треков и плейлистов с Яндекс Музыки в высоком качестве.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Yandex Music Downloader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "downloads",
+    "storage",
+    "activeTab",
+    "cookies"
+  ],
+  "host_permissions": [
+    "*://*.yandex.ru/*",
+    "*://*.yandex.net/*",
+    "*://*.music.yandex.ru/*",
+    "*://*.music.yandex.com/*",
+    "*://*.music.yandex.kz/*",
+    "*://*.music.yandex.by/*",
+    "*://*.music.yandex.uz/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://music.yandex.ru/*",
+        "*://music.yandex.com/*",
+        "*://music.yandex.kz/*",
+        "*://music.yandex.by/*",
+        "*://music.yandex.uz/*"
+      ],
+      "js": ["content/page-bridge.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://music.yandex.ru/*",
+        "*://music.yandex.com/*",
+        "*://music.yandex.kz/*",
+        "*://music.yandex.by/*",
+        "*://music.yandex.uz/*"
+      ],
+      "js": ["lib/md5.js", "content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/page-bridge.js",
+        "icons/icon16.png",
+        "icons/icon32.png",
+        "icons/icon48.png",
+        "icons/icon128.png"
+      ],
+      "matches": [
+        "*://music.yandex.ru/*",
+        "*://music.yandex.com/*",
+        "*://music.yandex.kz/*",
+        "*://music.yandex.by/*",
+        "*://music.yandex.uz/*"
+      ]
+    }
+  ]
+}
