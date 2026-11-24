@@ -38,6 +38,10 @@ Made by [Mono no Aware](https://github.com/Mono-no-Awares)
 2. Open `about:debugging#/runtime/this-firefox`.
 3. Click **Load Temporary Add-on...** and select `manifest.json` inside the extracted folder (or `dist/firefox/manifest.json`).
 
+> **Note (Firefox):** Temporary add-ons reset when Firefox restarts. To install permanently:
+> - **Standard Firefox:** sign `ym-downloader-firefox.zip` for free as an **Unlisted** add-on at `addons.mozilla.org/developers/` and install the resulting `.xpi`.
+> - **Firefox Developer Edition / Nightly / LibreWolf:** set `xpinstall.signatures.required` to `false` in `about:config`, rename `ym-downloader-firefox.zip` to `.xpi`, and drag it into `about:addons`.
+
 ### Build from Source
 ```bash
 python build.py
@@ -67,6 +71,10 @@ Outputs unpacked builds and `.zip` archives into `dist/`.
 1. Скачай `ym-downloader-firefox.zip` из раздела **Releases** (или выполни `python build.py`).
 2. Открой `about:debugging#/runtime/this-firefox`.
 3. Нажми **Загрузить временное дополнение...** и выбери `manifest.json` из распакованной папки (или `dist/firefox/manifest.json`).
+
+> **Важно (Firefox):** временные дополнения сбрасываются после перезапуска браузера. Чтобы установить навсегда:
+> - **Обычный Firefox:** бесплатно подпиши `ym-downloader-firefox.zip` как **Unlisted** (для себя) на `addons.mozilla.org/developers/` и установи полученный `.xpi`.
+> - **Firefox Developer Edition / Nightly / LibreWolf:** открой `about:config`, переключи `xpinstall.signatures.required` в `false`, переименуй `ym-downloader-firefox.zip` в `.xpi` и перетащи в `about:addons`.
 
 ### Сборка из исходников
 ```bash
