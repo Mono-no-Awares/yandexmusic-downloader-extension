@@ -6,6 +6,14 @@ Made by [Mono no Aware](https://github.com/Mono-no-Awares)
 
 [English](#english) · [Русский](#русский)
 
+## Preview
+
+<p align="center">
+  <img src="assets/preview-main.png" alt="Main view" width="320" />
+  &nbsp;&nbsp;
+  <img src="assets/preview-settings.png" alt="Settings view" width="320" />
+</p>
+
 ---
 
 ## English
