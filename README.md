@@ -9,9 +9,9 @@ Made by [Mono no Aware](https://github.com/Mono-no-Awares)
 ## Preview
 
 <p align="center">
-  <img src="assets/preview-main.png" alt="Main view" width="320" />
+  <img src="assets/preview-home.png" alt="Main view" width="320" />
   &nbsp;&nbsp;
-  <img src="assets/preview-settings.png" alt="Settings view" width="320" />
+  <img src="assets/preview-config.png" alt="Settings view" width="320" />
 </p>
 
 ---
