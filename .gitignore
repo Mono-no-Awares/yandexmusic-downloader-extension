@@ -5,6 +5,8 @@ node_modules/
 .vscode/
 .idea/
 dist/
+__pycache__/
+*.pyc
 *.zip
 *.crx
 *.xpi

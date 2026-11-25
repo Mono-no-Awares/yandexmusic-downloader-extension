@@ -1,0 +1,23 @@
+name: Build Extension
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build Chrome and Firefox packages
+        run: python build.py
+      - name: Upload extension archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: ym-downloader-builds
+          path: dist/*.zip
